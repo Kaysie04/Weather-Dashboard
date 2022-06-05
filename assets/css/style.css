@@ -1,3 +1,15 @@
-.display-3 {
-    font: pink;
+header {
+
+    background-image: linear-gradient(#66b3ff, #0066cc);
+}
+header h1{
+    font:black;
+    font-size: 50px;
+}
+
+body {
+    background-color: #e6f2ff;
+}
+.search-weather-section {
+   
 }

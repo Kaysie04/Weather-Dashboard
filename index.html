@@ -10,43 +10,56 @@
 </head>
 <body>
     <header class="text-center">
-        <h1 class="display-3"> Weather Dashboard</h1>
+        <h1> Weather Dashboard</h1>
     </header>
 
     <!--Put sections in their own cards!!!-->
-    <main class="container-fluid">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card"> 
-                    <form>
-                    <h3 class="card-header"> Search for a City: </h3>
-                    <input  type="text" class="form-control card-body" placeholder="City Search">
-                        <button type="button" class="btn btn-primary btn-sm btn-block search-btn card-body">Search</button>
-                    </form>
+    <main>
+        <section class="container-fluid" style="height: 300px;">
+            <div class= "row d-flex h-100" id="search-weather-section">
+                <div class="col-md-3">
+                    <div class="card d-flex">
+                        <form>
+                        <h3 class="card-header"> Search for a City: </h3>
+                        <input  type="text" class="form-control card-body" placeholder="City Search">
+                            <button type="button" class="btn btn-primary btn-xs btn-block search-btn">Search</button>
+                        </form>
+                    </div>
                 </div>
+                <section class="col-md-7 weather-display-section"> 
+                    <div class="card d-flex h-75">
+                    <h3 class="card-header text-center">Weather Section Display</h3>
+                    <div class=card-body></div>
+                    </div>
+                </section>
             </div>
-            <section class=" col-md-7 weather-display-section"> 
-                <div class="card"></div>
-                <h3 class="card-header text-center">Weather Section Display</h3>
-                
-            </section>
+        </section>
         </div>
-        
-        <div class="row" id= "search-forecast-section">
-            <section class="col-md-3"> 
-                <div class="card" id= "search-history-section"></div>
-                <h4 class="card-header"> Search History </h4>
-                    <ul class="list-group list-group-flush" id="search-history-ul">
-                        <li class="list-group-item"></li>
-                        <li class="list-group-item"></li>
-                        <li class="list-group-item"></li>
-                      </ul>
-            </section>
 
-            <section class="card col-md-8 col-md-offset-4"  id="forecast-section"> 
-                <h4 class="card-header">5 Day Forecast:</h4>
-            </section>
-        </main>
+        <section class="container-fluid" style="height:300px;">
+            <div class="row d-flex h-100" id= "search-forecast-section">
+                <section class="col-md-3"> 
+                    <div class="card d-flex h-100" id= "search-history-section">
+                    <h4 class="card-header"> Search History </h4>
+                        <ul id="search-history-ul">
+                            <li></li>   
+                        </ul>
+                    </div>
+                </section>
+
+                <section class= "col-md-7"  id="forecast-section"> 
+                    <div class="card d-flex h-75">
+                        <h4 class="card-header">5 Day Forecast:</h4>
+                            <div class="card"></div>
+                            <div class="card"></div>
+                            <div class="card"></div>
+                            <div class="card"></div>
+                            <div class="card"></div>
+                    </div>
+                        
+                </section>
+            </div>
+        </section>
     </main>
   
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
