@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  />
+    <link rel="stylesheet" href="assets/css/styles.css"/>
+</head>
+<body>
+    <header class="text-center">
+        <h1 class="display-3"> Weather Dashboard</h1>
+    </header>
+
+    <!--Put sections in their own cards!!!-->
+    <main class="container-fluid row">
+        <div class="card"> 
+            <form style="width: 18rem;">
+            <h3 class="card-header"> Search for a City: </h3>
+            <input  type="text" class="form-control card-body" placeholder="City Search">
+                <button type="button" class="btn btn-primary btn-sm btn-block search-btn card-body">Search</button>
+            </form>
+        </div>
+        <section class="card weather-display-section"> 
+            Weather Section Display
+        </section>
+
+        <section class="card search-history-section"> 
+            Search History
+        </section>
+        
+        <section class=" card forecast-section"> 
+            5 Day Forecast
+        </section>
+    </main>
+  
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
+
+
