@@ -13,14 +13,14 @@
         <h1> Weather Dashboard</h1>
     </header>
 
-    <!--Put sections in their own cards!!!-->
+    <!--Put sections in their own cards-->
     <main>
         <section class="container-fluid" style="height: 300px;">
             <div class= "row d-flex h-100" id="search-weather-section">
                 <div class="col-md-3">
                     <div class="card d-flex">
                         <form>
-                        <h3 class="card-header"> Search for a City: </h3>
+                        <h3 class="card-header" style="background-color:#80bfff"> Search for a City: </h3>
                         <input  type="text" class="form-control card-body" placeholder="City Search">
                             <button type="button" class="btn btn-primary btn-xs btn-block search-btn">Search</button>
                         </form>
@@ -28,7 +28,7 @@
                 </div>
                 <section class="col-md-7 weather-display-section"> 
                     <div class="card d-flex h-75">
-                    <h3 class="card-header text-center">Weather Section Display</h3>
+                    <h3 class="card-header text-center" style="background-color:#80bfff;">Weather Section Display</h3>
                     <div class=card-body></div>
                     </div>
                 </section>
@@ -40,21 +40,23 @@
             <div class="row d-flex h-100" id= "search-forecast-section">
                 <section class="col-md-3"> 
                     <div class="card d-flex h-100" id= "search-history-section">
-                    <h4 class="card-header"> Search History </h4>
+                    <h4 class="card-header" style="background-color:#80bfff"> Search History </h4>
                         <ul id="search-history-ul">
                             <li></li>   
                         </ul>
                     </div>
                 </section>
 
-                <section class= "col-md-7"  id="forecast-section"> 
-                    <div class="card d-flex h-75">
-                        <h4 class="card-header">5 Day Forecast:</h4>
-                            <div class="card"></div>
-                            <div class="card"></div>
-                            <div class="card"></div>
-                            <div class="card"></div>
-                            <div class="card"></div>
+                <section class= "col-md-7" id="forecast-section"> 
+                    <div class="card d-flex h-100 w-100">
+                        <h4 class="card-header" style="background-color:#80bfff;">5 Day Forecast:</h4>
+                        <div class="row d-flex h-75 w-100 margin-left:0px;">
+                            <div class="d-flex col-2 offset-1 card"></div>
+                            <div class="d-flex col-2 card"></div>
+                            <div class="d-flex col-2 card"></div>
+                            <div class="d-flex col-2 card"></div>
+                            <div class="d-flex col-2 card"></div>
+                        </div>
                     </div>
                         
                 </section>

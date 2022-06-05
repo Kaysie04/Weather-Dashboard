@@ -10,6 +10,6 @@ header h1{
 body {
     background-color: #e6f2ff;
 }
-.search-weather-section {
-   
+#search-history-section ul {
+   list-style-type: none;
 }
