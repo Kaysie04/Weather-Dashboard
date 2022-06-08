@@ -11,6 +11,7 @@ searchBtn.addEventListener("click", function() {
     userSearch = searchInputEl.value
     searchHistory.push(userSearch)
     localStorage.setItem("searchName", JSON.stringify(searchHistory))
+    searchHistoryDisplay()
 
 })
 
@@ -22,7 +23,7 @@ function searchHistoryDisplay () {
         searchHistoryUl.append(searchHistoryLi)
         searchHistoryLi.textContent = getStorage[i]
     }
-    searchHistoryDisplay()
+    
 }
 
 
