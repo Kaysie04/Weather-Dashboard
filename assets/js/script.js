@@ -2,8 +2,8 @@
 var searchInputEl = document.getElementById("search-input")
 var searchFormEl = document.getElementById("search-form")
 var searchBtn = document.getElementById("search-btn")
-var searchHistory = []
-var searchHistoryUl = document.getElementById("search-history-ul")
+var searchHistory = JSON.parse(localStorage.getItem("searchName")) || []
+var searchHistoryList = document.getElementById("search-history-list")
 
 
 
@@ -12,19 +12,20 @@ searchBtn.addEventListener("click", function() {
     searchHistory.push(userSearch)
     localStorage.setItem("searchName", JSON.stringify(searchHistory))
     searchHistoryDisplay()
-
 })
 
 
 function searchHistoryDisplay () {
-    var getStorage = JSON.parse(localStorage.getItem("searchName"))
-    for (let i = 0; i < getStorage.length; i++) {
-        searchHistoryLi = document.createElement("li")
-        searchHistoryUl.append(searchHistoryLi)
-        searchHistoryLi.textContent = getStorage[i]
+    searchHistoryList.textContent = "";
+    for (let i = 0; i < searchHistory.length; i++) {
+         var searchHistoryItem = document.createElement("div")
+        searchHistoryItem.textContent = searchHistory[i]
+        searchHistoryList.append(searchHistoryItem)
     }
     
+    
 }
+
 
 
 
