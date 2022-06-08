@@ -19,10 +19,10 @@
             <div class= "row d-flex h-100" id="search-weather-section">
                 <div class="col-md-3">
                     <div class="card d-flex border-dark">
-                        <form>
+                        <form id="search-form">
                         <h3 class="card-header" style="background-color:#80bfff"> Search for a City: </h3>
-                        <input  type="text" class="form-control card-body" placeholder="City Search">
-                            <button type="button" class="btn btn-primary btn-xs btn-block search-btn">Search</button>
+                        <input type="text" class="form-control card-body" placeholder="Enter City Name" id="search-input">
+                            <button type="button" class="btn btn-primary btn-xs btn-block" id="search-btn">Search</button>
                         </form>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                     <div class="card d-flex h-100 border-dark" id= "search-history-section">
                     <h4 class="card-header" style="background-color:#80bfff"> Search History </h4>
                         <ul id="search-history-ul">
-                            <li></li>   
+                              
                         </ul>
                     </div>
                 </section>
