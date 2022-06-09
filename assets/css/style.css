@@ -13,3 +13,7 @@ body {
 #search-history-section ul {
    list-style-type: none;
 }
+
+.degrees {
+    display:none;
+}

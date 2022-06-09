@@ -10,6 +10,8 @@ var tempEl = document.getElementById("temp")
 var windEl = document.getElementById("wind")
 var humidityEl = document.getElementById("humidity")
 var UVIndexEl = document.getElementById("UV-index")
+var weatherIconImg = document.getElementById("weather-icon")
+
 
 
 
@@ -23,36 +25,43 @@ const APIKey = "1379210649a22287bd5aad61bdde19be";
    
     // set variable to API depending on what city is search
 
-    var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + userSearch + "&APPID=" + APIKey;
+    var queryUrl = "https://api.openweathermap.org/data/2.5/weather?units=imperial&q=" + userSearch + "&APPID=" + APIKey;
 
     // fetch request from weather API 
     fetch(queryUrl)
     .then(response => response.json())
     .then(data => {
-        //console.log(data)
+        console.log(data)
 
         // display data on elements
+
+        // setting current date to a variable, multiply by 1000 because dt is UNIX time
         let currentDate = new Date(data.dt *1000)
         let date = currentDate.getDate()
         let month = currentDate.getMonth()
         let year = currentDate.getFullYear()
-        todaysWeatherEl.textContent = data.name + " " + month + "/" + date + "/"  + year 
-        
+        todaysWeatherEl.textContent = data.name + " " + month + "/" + date + "/"  + year
 
-    })
-    
-    // cal = Calendar.getInstance();    
-    // Date d = cal.getTime();
+        // retrieve icon dependent on current weather
+        //   let weatherIcon = data.weather[0].icon
+        //     weatherIconImg.setAttribute("src", "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png")
+
+        // display current temp
+        //    var degreesF = document.getElementsByClassName("degrees")
+        //    degreesF.classList.remove("degrees")
+           tempEl.textContent = "Temperature:" + " " + data.main.temp + " " + '\u00B0F'
 
 
-    // const currentDate = new Date(response.data.dt * 1000);
-    // const day = currentDate.getDate();
-    // const month = currentDate.getMonth() + 1;
-    // const year = currentDate.getFullYear();
-    // nameEl.innerHTML = response.data.name + " (" + month + "/" + day + "/" + year + ") ";
-    
+        // display current wind mph
+            windEl.textContent = "Wind Speed:" + " " + data.wind.speed + "mph"
 
-   
+        // display current humidity %
+            humidityEl.textContent = "Humidity:" + " " + data.main.humidity + "%"
+
+        // display current uv-index
+            //UVIndexEl.textContent = "UV Index" + " " 
+
+    }) 
 }
 
 searchBtn.addEventListener("click", function() { 
@@ -62,7 +71,6 @@ searchBtn.addEventListener("click", function() {
     localStorage.setItem("searchName", JSON.stringify(searchHistory))
     searchHistoryDisplay()
 })
-
 
 function searchHistoryDisplay () {
     searchHistoryList.textContent = "";
