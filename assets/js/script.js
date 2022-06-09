@@ -29,13 +29,27 @@ const APIKey = "1379210649a22287bd5aad61bdde19be";
     fetch(queryUrl)
     .then(response => response.json())
     .then(data => {
-        console.log(data)
+        //console.log(data)
 
         // display data on elements
-        todaysWeatherEl.textContent = data.name
+        let currentDate = new Date(data.dt *1000)
+        let date = currentDate.getDate()
+        let month = currentDate.getMonth()
+        let year = currentDate.getFullYear()
+        todaysWeatherEl.textContent = data.name + " " + month + "/" + date + "/"  + year 
+        
 
     })
     
+    // cal = Calendar.getInstance();    
+    // Date d = cal.getTime();
+
+
+    // const currentDate = new Date(response.data.dt * 1000);
+    // const day = currentDate.getDate();
+    // const month = currentDate.getMonth() + 1;
+    // const year = currentDate.getFullYear();
+    // nameEl.innerHTML = response.data.name + " (" + month + "/" + day + "/" + year + ") ";
     
 
    
