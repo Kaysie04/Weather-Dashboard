@@ -4,6 +4,29 @@ var searchFormEl = document.getElementById("search-form")
 var searchBtn = document.getElementById("search-btn")
 var searchHistory = JSON.parse(localStorage.getItem("searchName")) || []
 var searchHistoryList = document.getElementById("search-history-list")
+var todaysWeatherEl = document.getElementById("todays-weather")
+var cityDateEl = document.getElementById("city-date")
+var tempEl = document.getElementById("temp")
+var windEl = document.getElementById("wind")
+var humidityEl = document.getElementById("humidity")
+var UVIndexEl = document.getElementById("UV-index")
+
+// assigning my created API Key on website to a constant
+const APIKey = "1379210649a22287bd5aad61bdde19be";
+
+var getWeatherData = function(userSearch) {
+// get request from weather API 
+var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + userSearch + "&appid" + APIKey;
+fetch(queryUrl)
+.then(function => response() {
+    // display response 
+
+})
+
+}
+
+
+
 
 
 
