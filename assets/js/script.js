@@ -11,27 +11,39 @@ var windEl = document.getElementById("wind")
 var humidityEl = document.getElementById("humidity")
 var UVIndexEl = document.getElementById("UV-index")
 
-// assigning my created API Key on website to a constant
-const APIKey = "1379210649a22287bd5aad61bdde19be";
+
+
+
+// function to get and display data from API
 
 var getWeatherData = function(userSearch) {
-// get request from weather API 
-var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + userSearch + "&appid" + APIKey;
-fetch(queryUrl)
-.then(function => response() {
-    // display response 
 
-})
+    // assigning my created API Key on website to a constant
+const APIKey = "1379210649a22287bd5aad61bdde19be";
+   
+    // set variable to API depending on what city is search
 
+    var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + userSearch + "&APPID=" + APIKey;
+
+    // fetch request from weather API 
+    fetch(queryUrl)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+
+        // display data on elements
+        todaysWeatherEl.textContent = data.name
+
+    })
+    
+    
+
+   
 }
-
-
-
-
-
 
 searchBtn.addEventListener("click", function() { 
     userSearch = searchInputEl.value
+    getWeatherData(userSearch);
     searchHistory.push(userSearch)
     localStorage.setItem("searchName", JSON.stringify(searchHistory))
     searchHistoryDisplay()
@@ -48,27 +60,3 @@ function searchHistoryDisplay () {
     
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-    
-
-
-
-
-
-
-
