@@ -10,6 +10,8 @@ var tempEl = document.getElementById("temp")
 var windEl = document.getElementById("wind")
 var humidityEl = document.getElementById("humidity")
 var UVIndexEl = document.getElementById("UV-index")
+var weatherDisplayEl = document.getElementsByClassName("weather-display-section")
+var historyForecastDisplayEl = document.getElementById("history-forecast-section")
 
 
 
@@ -61,7 +63,7 @@ const APIKey = "1379210649a22287bd5aad61bdde19be";
             humidityEl.innerHTML = "Humidity:" + " " + data.main.humidity + "%"
 
         // display current uv-index
-            //UVIndexEl.textContent = "UV Index" + " " 
+            
 
     }) 
 }
@@ -75,11 +77,13 @@ searchBtn.addEventListener("click", function() {
 })
 
 function searchHistoryDisplay () {
-
+    //weatherDisplayEl.classList.remove("weather-display-section")
+    //historyForecastDisplayEl.style.remove("history-forecast-section")
     searchHistoryList.textContent = "";
     for (let i = 0; i < searchHistory.length; i++) {
-         var searchHistoryItem = document.createElement("div")
-        searchHistoryItem.textContent = searchHistory[i]
+         var searchHistoryItem = document.createElement("button")
+         searchHistoryItem.className = "btn btn-secondary btn-xs btn-block" 
+        searchHistoryItem.innerHTML = searchHistory[i]
         searchHistoryList.append(searchHistoryItem)
     }
     
