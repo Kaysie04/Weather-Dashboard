@@ -1,3 +1,5 @@
+
+
 // define variables of document elements
 var searchInputEl = document.getElementById("search-input")
 var searchFormEl = document.getElementById("search-form")
@@ -33,7 +35,7 @@ const APIKey = "1379210649a22287bd5aad61bdde19be";
     fetch(queryUrl)
     .then(response => response.json())
     .then(data => {
-        console.log(data)
+        //console.log(data)
 
         // display data on elements
 
@@ -46,7 +48,6 @@ const APIKey = "1379210649a22287bd5aad61bdde19be";
 
         // retrieve icon dependent on current weather
           let weatherIcon = data.weather[0].icon
-          console.log(weatherIcon)
             weatherIconImg = document.createElement("img")
             weatherIconImg.setAttribute("src", `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`)
             todaysWeatherEl.append(weatherIconImg)
@@ -63,6 +64,24 @@ const APIKey = "1379210649a22287bd5aad61bdde19be";
             humidityEl.innerHTML = "Humidity:" + " " + data.main.humidity + "%"
 
         // display current uv-index
+
+        // define latitude and longitude because those are required to get the UV value
+        var lat = data.coord.lat;
+        var lon = data.coord.lon;
+        var UVQueryUrl = "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + lat + "&lon=" + lon + "&APPID=" + APIKey + "&cnt=1";
+        // fetch request from weather API 
+        fetch(UVQueryUrl)
+        .then(response => response.json())
+        .then(data => { console.log(data)
+        
+        UVIndexEl.innerHTML = "UV Index: " + data[0].value
+            
+        })
+
+        
+        
+        // five day forecast 
+
             
 
     }) 
@@ -84,8 +103,12 @@ function searchHistoryDisplay () {
          var searchHistoryItem = document.createElement("button")
          searchHistoryItem.className = "btn btn-secondary btn-xs btn-block" 
         searchHistoryItem.innerHTML = searchHistory[i]
+        searchHistoryItem.setAttribute("value", searchHistory[i])
         searchHistoryList.append(searchHistoryItem)
-    }
-    
-    
+
+        // be able to click a city in the search history and have its data populate on the page
+        searchHistoryItem.addEventListener("click", function () {
+            getWeatherData(searchHistoryItem.value);
+            })
+    } 
 }
