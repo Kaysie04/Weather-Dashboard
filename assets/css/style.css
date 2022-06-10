@@ -14,10 +14,10 @@ body {
    list-style-type: none;
 }
 
-/*.weather-display-section {
+.weather-display-section {
     display:none;
 }
 
-/*#history-forecast-section {
+.history-forecast-section {
     display:none;
 }
