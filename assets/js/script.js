@@ -94,7 +94,7 @@ const APIKey = "1379210649a22287bd5aad61bdde19be";
                 UVIndexValue.setAttribute("class", "badge badge-warning")
                 }
 
-                UVIndexEl.innerHTML = "UV Index" 
+                UVIndexEl.innerHTML = "UV Index:" + " "
                 UVIndexValue.innerHTML = data[0].value
                 UVIndexEl.append(UVIndexValue)
             })
