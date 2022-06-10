@@ -10,7 +10,7 @@ var tempEl = document.getElementById("temp")
 var windEl = document.getElementById("wind")
 var humidityEl = document.getElementById("humidity")
 var UVIndexEl = document.getElementById("UV-index")
-var weatherIconImg = document.getElementById("weather-icon")
+
 
 
 
@@ -43,20 +43,22 @@ const APIKey = "1379210649a22287bd5aad61bdde19be";
         todaysWeatherEl.textContent = data.name + " " + month + "/" + date + "/"  + year
 
         // retrieve icon dependent on current weather
-        //   let weatherIcon = data.weather[0].icon
-        //     weatherIconImg.setAttribute("src", "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png")
+          let weatherIcon = data.weather[0].icon
+          console.log(weatherIcon)
+            weatherIconImg = document.createElement("img")
+            weatherIconImg.setAttribute("src", `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`)
+            todaysWeatherEl.append(weatherIconImg)
+
 
         // display current temp
-        //    var degreesF = document.getElementsByClassName("degrees")
-        //    degreesF.classList.remove("degrees")
-           tempEl.textContent = "Temperature:" + " " + data.main.temp + " " + '\u00B0F'
+           tempEl.innerHTML = "Temperature:" + " " + data.main.temp + " " + '\u00B0F'
 
 
         // display current wind mph
-            windEl.textContent = "Wind Speed:" + " " + data.wind.speed + "mph"
+            windEl.innerHTML= "Wind Speed:" + " " + data.wind.speed + "mph"
 
         // display current humidity %
-            humidityEl.textContent = "Humidity:" + " " + data.main.humidity + "%"
+            humidityEl.innerHTML = "Humidity:" + " " + data.main.humidity + "%"
 
         // display current uv-index
             //UVIndexEl.textContent = "UV Index" + " " 
@@ -73,6 +75,7 @@ searchBtn.addEventListener("click", function() {
 })
 
 function searchHistoryDisplay () {
+
     searchHistoryList.textContent = "";
     for (let i = 0; i < searchHistory.length; i++) {
          var searchHistoryItem = document.createElement("div")
