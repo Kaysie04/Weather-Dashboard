@@ -1,13 +1,21 @@
 # Weather-Dashboard
 
-GIVEN a weather dashboard with form inputs
-WHEN I search for a city
-THEN I am presented with current and future conditions for that city and that city is added to the search history
-WHEN I view current weather conditions for that city
-THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-WHEN I view the UV index
-THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
-WHEN I view future weather conditions for that city
-THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
-WHEN I click on a city in the search history
-THEN I am again presented with current and future conditions for that city
+## Purpose
+The purpose of this project was to create a web application where users can search for a city and the page will display the current weather conditions along with a 5 day forecast. The application display features the city name, the date, an icon representation of weather conditions along with the weather data values. The values shown include temperature, what the temperature feels like, wind speed, humidity percentage and the UV Index. The UV Index is color-coded, indicating the UV levels as ok, moderate, and sever. The user's search history will also be saved in the user's local storage. When they click in the search history of past cities, the page will load that city's current weather data.
+
+## Webpage Display
+![Webpage Image](/assets/images/readmeimg.png)
+
+## Technologies
+HTML
+CSS
+Boostrap
+JavaScript
+OpenWeather API
+
+## Website Link
+https://kaysie04.github.io/Weather-Dashboard/
+
+
+## Licenses
+MIT
