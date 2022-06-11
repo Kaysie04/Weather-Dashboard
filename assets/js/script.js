@@ -15,6 +15,11 @@ var humidityEl = document.getElementById("humidity")
 var UVIndexEl = document.getElementById("UV-index")
 var weatherDisplayEl = document.querySelector(".weather-display-section")
 var historyForecastDisplayEl = document.querySelector(".history-forecast-section")
+var dayOneEl = document.getElementById("day-1")
+var dayTwoEl = document.getElementById("day-2")
+var dayThreeEl = document.getElementById ("day-3")
+var dayFourEl = document.getElementById ("day-4")
+var dayFiveEl = document.getElementById ("day-5")
 
 // function to get and display data from API
 
@@ -44,6 +49,8 @@ const APIKey = "1379210649a22287bd5aad61bdde19be";
             }
         
         //console.log(data)
+
+
             // remove css style display:none
         weatherDisplayEl.classList.remove("weather-display-section")
         historyForecastDisplayEl.classList.remove("history-forecast-section")
@@ -106,9 +113,53 @@ const APIKey = "1379210649a22287bd5aad61bdde19be";
         fetch(fiveDayQueryUrl)
         .then(response => response.json())
         .then (data => {
-            console.log(data)
-        })
+            console.log(data)  
+            //var cityId = data.city.id 
+            
+            // create elements for each weather variable
+            var dateTitle = document.createElement("h5")
+            var tempP = document.createElement("p")
+            var feelsLikeP = document.createElement("p")
+            var windP = document.createElement("p")
+            var humidityP = document.createElement("p")
 
+            // setting date display to array value
+            let iDate = new Date(data.list[0].dt *1000)
+           let idate = iDate.getDate()
+           let imonth = iDate.getMonth()
+           let iyear = iDate.getFullYear()
+           dateTitle.innerHTML= imonth + "/" + idate + "/"  + iyear
+
+           // display weather icon
+           let iWeatherIcon = data.list[0].weather.icon
+           iWeatherIconImg = document.createElement("img")
+           iWeatherIconImg.setAttribute("src", `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`)
+         
+
+            // setting values for the weather variables
+           tempP.innerHTML = "Temp:" + " " + data.list[0].main.temp + '\u00B0F'
+           feelsLikeP.innerHTML = "Feels Like:" + " " + data.list[0].main.feels_like + '\u00B0F'
+           windP.innerHTML = "Wind:" + " " + data.list[0].wind.speed + "mph"
+           humidityP.innerHTML = "Humidity:" + " " + data.list[0].main.humidity + "%"
+           
+           // append the elements
+           dayOneEl.append(dateTitle)
+           dayOneEl.append(iWeatherIconImg)
+           dayOneEl.append(tempP)
+           dayOneEl.append(feelsLikeP)
+           dayOneEl.append(windP)
+           dayOneEl.append(humidityP)
+
+         
+
+
+
+           
+           
+           
+
+
+        })
     }) 
 }
 
@@ -120,7 +171,6 @@ searchBtn.addEventListener("click", function() {
 searchHistoryDisplay()
 
 function searchHistoryDisplay () {
-    console.log(weatherDisplayEl)
     
     searchHistoryList.innerHTML = "";
     for (let i = 0; i < searchHistory.length; i++) {
