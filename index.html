@@ -15,7 +15,7 @@
 
     <!--Put sections in their own cards-->
     <main>
-        <section class="container-fluid" style="height: 300px;">
+        <section class="container-fluid" style="height: 300px width=300px;">
             <div class= "row d-flex h-100" id="search-weather-section">
                 <div class="col-md-3">
                     <div class="card d-flex border-dark">
@@ -28,7 +28,7 @@
                 </div>
                 <section class="col-md-7 weather-display-section"> 
                     <div class="card d-flex border-dark">
-                        <h3 class="card-header text-center" style="background-color:#80bfff;" id="todays-weather">Today's Weather</h3>
+                        <h3 class="card-header text-center" style="background-color:#80bfff;" id="todays-weather"></h3>
                         <div class=card-body>
                             <p id= "city-date"></p>
                             <p id="temp"> </p> 
@@ -48,8 +48,7 @@
                 <section class="col-md-3"> 
                     <div class="card d-flex h-100 border-dark" id= "search-history-section">
                     <h4 class="card-header" style="background-color:#80bfff"> Search History </h4>
-                        <div id="search-history-list">
-                              
+                        <div class="card-body" id="search-history-list"> 
                         </div>
                     </div>
                 </section>
@@ -64,8 +63,7 @@
                             <div class="card"></div>
                             <div class="card"></div>
                         </div>
-                    </div>
-                        
+                    </div>    
                 </section>
             </div>
         </section>

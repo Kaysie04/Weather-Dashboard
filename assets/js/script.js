@@ -99,13 +99,6 @@ const APIKey = "1379210649a22287bd5aad61bdde19be";
                 UVIndexEl.append(UVIndexValue)
             })
 
-
-         
-         
-        
-            
-            
-
         // five day forecast 
         var fiveDayQueryUrl = "https://api.openweathermap.org/data/2.5/forecast?units=imperial&q=" + userSearch + "&APPID=" + APIKey;
         fetch(fiveDayQueryUrl)
@@ -119,7 +112,7 @@ const APIKey = "1379210649a22287bd5aad61bdde19be";
 
 searchBtn.addEventListener("click", function() { 
     weatherDisplayEl.classList.remove("weather-display-section")
-    //historyForecastDisplayEl.classList.remove("history-forecast-section")
+    historyForecastDisplayEl.classList.remove("history-forecast-section")
     userSearch = searchInputEl.value
     getWeatherData(userSearch);
 })
@@ -129,7 +122,7 @@ searchHistoryDisplay()
 function searchHistoryDisplay () {
     console.log(weatherDisplayEl)
     
-    searchHistoryList.textContent = "";
+    searchHistoryList.innerHTML = "";
     for (let i = 0; i < searchHistory.length; i++) {
          var searchHistoryItem = document.createElement("button")
         searchHistoryItem.className = "btn btn-secondary btn-xs btn-block" 
