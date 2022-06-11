@@ -35,21 +35,23 @@ const APIKey = "1379210649a22287bd5aad61bdde19be";
     // fetch request from weather API 
     fetch(queryUrl)
     .then(response => { 
-        if (response.ok) { 
-            return response.json()
-        } else { 
-            window.location.reload()
-        }
+        if (!response.ok) { 
+            var errorDisplay = document.getElementById("search-header")
+            var errorMessage = document.createElement("div")
+            errorMessage.innerHTML = "Invalid city name"
+            errorDisplay.append(errorMessage)
+            searchFormEl.reset()
+         } else {
+         return response.json()
+         }
     })
     .then(data => {
-        if (!searchHistory.includes(userSearch)) {
-            searchHistory.push(userSearch)
+        if (!searchHistory.includes(data.name)) {
+            searchHistory.push(data.name)
             localStorage.setItem("searchName", JSON.stringify(searchHistory))
             searchHistoryDisplay()
+            searchFormEl.reset()
             }
-        
-        //console.log(data)
-
 
             // remove css style display:none
         weatherDisplayEl.classList.remove("weather-display-section")
@@ -87,7 +89,7 @@ const APIKey = "1379210649a22287bd5aad61bdde19be";
             // define latitude and longitude because those are required to get the UV value
             var lat = data.coord.lat;
             var lon = data.coord.lon;
-            var UVQueryUrl = "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + lat + "&lon=" + lon + "&APPID=" + APIKey; // + "&cnt=1";
+            var UVQueryUrl = "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + lat + "&lon=" + lon + "&APPID=" + APIKey;
             // fetch request from weather API 
             fetch(UVQueryUrl)
             .then(response => response.json())
@@ -102,63 +104,59 @@ const APIKey = "1379210649a22287bd5aad61bdde19be";
                 } else {
                 UVIndexValue.setAttribute("class", "badge badge-warning")
                 }
-
                 UVIndexEl.innerHTML = "UV Index:" + " "
                 UVIndexValue.innerHTML = data[0].value
                 UVIndexEl.append(UVIndexValue)
             })
 
         // five day forecast 
-        var fiveDayQueryUrl = "https://api.openweathermap.org/data/2.5/forecast?units=imperial&q=" + userSearch + "&APPID=" + APIKey;
+
+        var fiveDayQueryUrl =  "https://api.openweathermap.org/data/2.5/onecall?units=imperial&lat=" + lat + "&lon=" + lon + "&APPID=" + APIKey;
         fetch(fiveDayQueryUrl)
         .then(response => response.json())
         .then (data => {
             console.log(data)  
-            //var cityId = data.city.id 
             
+            // create an array for days in forecast
+
+            var forecastArray = [dayOneEl, dayTwoEl, dayThreeEl, dayFourEl, dayFiveEl]
+            var j=0
+            
+            for (let i = 1; i < 8; i++) {           
             // create elements for each weather variable
-            var dateTitle = document.createElement("h5")
+            var dateTitle = document.createElement("h4")
             var tempP = document.createElement("p")
             var feelsLikeP = document.createElement("p")
             var windP = document.createElement("p")
             var humidityP = document.createElement("p")
 
             // setting date display to array value
-            let iDate = new Date(data.list[0].dt *1000)
+            let iDate = new Date(data.daily[i].dt *1000)
            let idate = iDate.getDate()
            let imonth = iDate.getMonth()
            let iyear = iDate.getFullYear()
            dateTitle.innerHTML= imonth + "/" + idate + "/"  + iyear
 
            // display weather icon
-           let iWeatherIcon = data.list[0].weather.icon
+           let iWeatherIcon = data.daily[i].weather.icon
            iWeatherIconImg = document.createElement("img")
            iWeatherIconImg.setAttribute("src", `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`)
          
-
             // setting values for the weather variables
-           tempP.innerHTML = "Temp:" + " " + data.list[0].main.temp + '\u00B0F'
-           feelsLikeP.innerHTML = "Feels Like:" + " " + data.list[0].main.feels_like + '\u00B0F'
-           windP.innerHTML = "Wind:" + " " + data.list[0].wind.speed + "mph"
-           humidityP.innerHTML = "Humidity:" + " " + data.list[0].main.humidity + "%"
+           tempP.innerHTML = "Temp:" + " " + data.daily[i].temp.day + '\u00B0F'
+           feelsLikeP.innerHTML = "Feels Like:" + " " + data.daily[i].feels_like.day + '\u00B0F'
+           windP.innerHTML = "Wind:" + " " + data.daily[i].wind_speed + "mph"
+           humidityP.innerHTML = "Humidity:" + " " + data.daily[i].humidity + "%"
            
            // append the elements
-           dayOneEl.append(dateTitle)
-           dayOneEl.append(iWeatherIconImg)
-           dayOneEl.append(tempP)
-           dayOneEl.append(feelsLikeP)
-           dayOneEl.append(windP)
-           dayOneEl.append(humidityP)
-
-         
-
-
-
-           
-           
-           
-
-
+          forecastArray[j].append(dateTitle)
+          forecastArray[j].append(iWeatherIconImg)
+          forecastArray[j].append(tempP)
+          forecastArray[j].append(feelsLikeP)
+          forecastArray[j].append(windP)
+          forecastArray[j].append(humidityP)
+          j++
+        }
         })
     }) 
 }
@@ -172,6 +170,7 @@ searchHistoryDisplay()
 
 function searchHistoryDisplay () {
     
+    // for loop to create a list of city searches
     searchHistoryList.innerHTML = "";
     for (let i = 0; i < searchHistory.length; i++) {
          var searchHistoryItem = document.createElement("button")
