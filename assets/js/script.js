@@ -32,12 +32,10 @@ const APIKey = "1379210649a22287bd5aad61bdde19be";
     .then(response => { 
         if (response.ok) { 
             return response.json()
-        } else {
+        } else { 
             window.location.reload()
-            }
+        }
     })
-       
-    
     .then(data => {
         if (!searchHistory.includes(userSearch)) {
             searchHistory.push(userSearch)
@@ -46,13 +44,11 @@ const APIKey = "1379210649a22287bd5aad61bdde19be";
             }
         
         //console.log(data)
-
-       
-        // remove css style display:none
+            // remove css style display:none
         weatherDisplayEl.classList.remove("weather-display-section")
         historyForecastDisplayEl.classList.remove("history-forecast-section")
 
-         // display data on elements
+        // display data on elements
 
         // setting current date to a variable, multiply by 1000 because dt is UNIX time
         let currentDate = new Date(data.dt *1000)
