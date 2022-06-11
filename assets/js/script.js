@@ -36,10 +36,10 @@ const APIKey = "1379210649a22287bd5aad61bdde19be";
     fetch(queryUrl)
     .then(response => { 
         if (!response.ok) { 
-            var errorDisplay = document.getElementById("search-header")
-            var errorMessage = document.createElement("div")
-            errorMessage.innerHTML = "Invalid city name"
-            errorDisplay.append(errorMessage)
+            var errorDisplay = document.getElementById("error-display")
+            errorDisplay.setAttribute("class", "card-body")
+            errorDisplay.setAttribute("class", "text-center")
+            errorDisplay.textContent = "Invalid City Name"
             searchFormEl.reset()
          } else {
          return response.json()
@@ -169,7 +169,7 @@ searchBtn.addEventListener("click", function() {
 searchHistoryDisplay()
 
 function searchHistoryDisplay () {
-    
+
     // for loop to create a list of city searches
     searchHistoryList.innerHTML = "";
     for (let i = 0; i < searchHistory.length; i++) {
