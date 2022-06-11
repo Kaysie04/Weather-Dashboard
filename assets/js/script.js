@@ -32,11 +32,12 @@ const APIKey = "1379210649a22287bd5aad61bdde19be";
     .then(response => { 
         if (response.ok) { 
             return response.json()
-        } else { throw new Error("city name invalid")
-        }
-    }).catch(function (error) {alert(error)
-        return
+        } else {
+            window.location.reload()
+            }
     })
+       
+    
     .then(data => {
         if (!searchHistory.includes(userSearch)) {
             searchHistory.push(userSearch)
@@ -46,7 +47,12 @@ const APIKey = "1379210649a22287bd5aad61bdde19be";
         
         //console.log(data)
 
-        // display data on elements
+       
+        // remove css style display:none
+        weatherDisplayEl.classList.remove("weather-display-section")
+        historyForecastDisplayEl.classList.remove("history-forecast-section")
+
+         // display data on elements
 
         // setting current date to a variable, multiply by 1000 because dt is UNIX time
         let currentDate = new Date(data.dt *1000)
@@ -111,8 +117,6 @@ const APIKey = "1379210649a22287bd5aad61bdde19be";
 }
 
 searchBtn.addEventListener("click", function() { 
-    weatherDisplayEl.classList.remove("weather-display-section")
-    historyForecastDisplayEl.classList.remove("history-forecast-section")
     userSearch = searchInputEl.value
     getWeatherData(userSearch);
 })
@@ -125,7 +129,7 @@ function searchHistoryDisplay () {
     searchHistoryList.innerHTML = "";
     for (let i = 0; i < searchHistory.length; i++) {
          var searchHistoryItem = document.createElement("button")
-        searchHistoryItem.className = "btn btn-secondary btn-xs btn-block" 
+        searchHistoryItem.className = "btn btn-light btn-outline-dark btn-xs btn-block" 
         searchHistoryItem.innerHTML = searchHistory[i]
         searchHistoryItem.setAttribute("value", searchHistory[i])
         searchHistoryList.append(searchHistoryItem)
